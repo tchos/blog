@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block content %}
+    <h1>Le blog de TCHOS</h1>
+    {% for article in posts %}
+        <article>
+            <h2>{{ article.title }}</h2>
+            <h5>Publié par <i>{{ article.author_or_default }}</i>, publié le {{ article.created_on | date:'j F Y' }}.</h5>
+            <p>
+                {# safe permet d'interprépter les blises html s'il y en a dans le contenu; truncatewords:50 permet de n'afficher que les 50 premiers mots  #}
+                {{ article.content | safe | truncatewords:50 }}
+            </p>
+        </article>
+    {% endfor %}
+{% endblock %}

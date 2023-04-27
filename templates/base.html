@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title - {% block title %}{% endblock %}</title>
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <secttion id="blog">
+        {% block content %}{% endblock %}
+    </secttion>
+    {% block js %}{% endblock %}
+</body>
+</html>
