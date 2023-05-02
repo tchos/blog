@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.template.defaultfilters import slugify
 from django.db import models
+from django.urls import reverse
 
 # Recupération du user connecté
 User = get_user_model()
@@ -17,6 +18,7 @@ class BlogPost(models.Model):
     created_on = models.DateField(blank=True, null=True)
     published = models.BooleanField(default=False, verbose_name="Publié")
     content = models.TextField(blank=True, verbose_name="Contenu")
+    thumbnail = models.ImageField(blank=True, upload_to='blog')
 
     class Meta:
         # Classement par la date de création des article odre décroissant dans le panel d'administration
@@ -34,9 +36,9 @@ class BlogPost(models.Model):
 
         super().save(*args, **kwargs)
 
-    @@property
+    @property
     def author_or_default(self):
-        # Condition ternaire
+        # Condition ternaire pour retourner le nom de l'auteur s'il a été renseigné pendant la création de l'article ou pas
         return self.author.username if self.author else "Un auteur inconnu"
 
         """Le code ci-dessus est équivalent au code ci-dessous
@@ -44,5 +46,7 @@ class BlogPost(models.Model):
             return self.author.username
         return "Un auteur inconnu"
         """
-
+    # Redirection vers la page home de notre app 'posts' déclarée dans notre fichier urls.py avec app_name
+    def get_absolute_url(self):
+        return reverse('posts:home')
 

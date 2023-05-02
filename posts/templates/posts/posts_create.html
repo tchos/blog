@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Ajouter un article{% endblock %}
+
+{% block content %}
+    <h1>Ajouter un article</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="{{ submit_text }}" class="btn btn-submit">
+        <input type="reset" value="Annuler" class="btn btn-reset">
+    </form>
+{% endblock %}

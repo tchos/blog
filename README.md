@@ -1,1 +1,1 @@
-# blog
+# KNLB Django Blog

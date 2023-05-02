@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Details de l'article{% endblock %}
+
+{% block content %}
+    <h1>Détails sur l'article</h1>
+    <article class="post-detail">
+        <h1>{{ article.title }}</h1>
+        <img src="{{ article.thumbnail.url }}" alt="L'image de l'article">
+        <div>{{ article.content|linebreaks|safe }}</div>
+    </article>
+{% endblock %}
